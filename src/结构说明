@@ -1,0 +1,31 @@
+
+<加红加粗加大>
+        不要在全局下随意写任何东西
+        自己写的代码不要影响到别人
+        端口是3001
+</加红加粗加大>
+
+- api 所有请求
+  -- 自己创建自己的文件导出到index
+  -- index
+- components 所有的展示组件(带状态的组件)
+  -- 同上 （创建自己的文件夹把组件都扔进去）
+  -- index 写公用组件
+- containers 所有容器组件(只接收props展示数据的组件)
+  -- 同上
+  -- index 同上
+- static 静态文件
+    -- css
+     -- common 公用样式
+     -- 创建自己文件夹写自己
+    -- img (估计没用)
+- store
+  -- action
+    -- 创建自己的
+    -- index
+  -- reducer
+    -- 同上
+    -- 同上
+  -- dispatch (mapDisptchToProps抽离出来放这里？研究下有没有必要？)
+  -- action-Type
+  -- index
