@@ -24,9 +24,15 @@ import Grocery from "./containers/grocery"
 import More from "./containers/more"
 import My from "./containers/my"
 
+
+import axios from "./api/index"
+
 //redux测试
 console.log(store.dispatch({type:"TYPE_EXAMPLE"}));
 
+axios.get('/shop').then((res)=>{
+    console.log(res);
+})
 
 ReactDOM.render(<Provider store={store}>
         <HashRouter>
