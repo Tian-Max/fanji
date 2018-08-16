@@ -47,6 +47,7 @@ ReactDOM.render(<Provider store={store}>
                         <Route path='/more' component={More}/>
                         <Route path='/my' component={My}/>
                     </Switch>
+                    <script>alert(1)</script>
                 </div>
             </LocaleProvider>
         </HashRouter>

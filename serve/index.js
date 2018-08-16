@@ -27,8 +27,8 @@ http.createServer((req,res)=>{
         res.end(data);
         return;
     }
-    if(pathname === "/fnjiHomeAtHome"&&req.method==="GET"){
-        let data = fs.readFileSync(path.join(__dirname,"fnjihome/Banner.json"),"utf-8");
+    if((pathname === "/fnjiHomeAtHome"||pathname === "/fnjiHomeDrop")&&req.method==="GET"){
+        let data = fs.readFileSync(path.join(__dirname,"fnjihome/AtHome.json"),"utf-8");
         res.writeHead(200,{
             "Content-Type":"application/json;charset=utf-8",
             "Access-Control-Allow-Origin":"http://localhost:3000",
@@ -37,7 +37,63 @@ http.createServer((req,res)=>{
         res.end(data);
         return;
     }
+    if(pathname === "/login"&&req.method==="POST"){
+        let str = "";
+        let strBack = null;
+        let data = "";
+        req.on("data",data=>{str+=data});
+        req.on("end",()=>{
+            data = fs.readFileSync(path.join(__dirname,"my/login.json"),"utf-8");
+            data = JSON.parse(data);
+            str = JSON.parse(str);
+            strBack = data.some(
+                item=>item.name===str.name&&item.psw===str.psw
+            );
 
+            if(strBack){
+                res.writeHead(200,{
+                    "Content-Type":"application/json;charset=utf-8",
+                    "Access-Control-Allow-Origin":"http://localhost:3000",
+                    'Access-Control-Allow-Credentials':"true",
+                    'Set-Cookie':'user='+str.name
+                });
+            }else{
+                res.writeHead(200,{
+                    "Content-Type":"application/json;charset=utf-8",
+                    "Access-Control-Allow-Origin":"http://localhost:3000",
+                    'Access-Control-Allow-Credentials':"true",
+                });
+            }
+
+            res.end(strBack+"");
+            return;
+        });
+
+    };
+    if(pathname === "/add"&&req.method==="POST"){
+        let str = "";
+        let data= "";
+        req.on("data",data=>{str+=data});
+        req.on("end",()=>{
+            data = fs.readFileSync(path.join(__dirname,"my/login.json"),"utf-8");
+            data = JSON.parse(data);
+            str = JSON.parse(str);
+            data.push(str);
+            fs.writeFile(path.join(__dirname,"my/login.json"),JSON.stringify(data),err=>{
+                if(err){
+                    res.end(err);
+                }
+                res.end("true");
+                return;
+            });
+            res.writeHead(200,{
+                "Content-Type":"application/json;charset=utf-8",
+                "Access-Control-Allow-Origin":"http://localhost:3000",
+                'Access-Control-Allow-Credentials':"true",
+            });
+        });
+
+    };
 }).listen(9090,()=>{
     console.log("9090的服务启动成功")
 })
