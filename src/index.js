@@ -21,6 +21,7 @@ import Furniture from "./containers/furniture"
 import Fnjihome from "./containers/fnjihome"
 import Gallery from "./containers/gallery"
 import Grocery from "./containers/grocery"
+import Dropping from './containers/dropping'
 import More from "./containers/more"
 import My from "./containers/my"
 
@@ -38,6 +39,7 @@ ReactDOM.render(<Provider store={store}>
                         <Route path='/fnjihome' component={Fnjihome}/>
                         <Route path='/gallery' component={Gallery}/>
                         <Route path='/grocery' component={Grocery}/>
+                        <Route path='/dropping' component={Dropping}/>
                         <Route path='/more' component={More}/>
                         <Route path='/my' component={My}/>
                     </Switch>
