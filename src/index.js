@@ -21,12 +21,19 @@ import Furniture from "./containers/furniture"
 import Fnjihome from "./containers/fnjihome"
 import Gallery from "./containers/gallery"
 import Grocery from "./containers/grocery"
+import Dropping from './containers/dropping'
 import More from "./containers/more"
 import My from "./containers/my"
+
+
+import axios from "./api/index"
 
 //redux测试
 console.log(store.dispatch({type:"TYPE_EXAMPLE"}));
 
+axios.get('/shop').then((res)=>{
+    console.log(res);
+})
 
 ReactDOM.render(<Provider store={store}>
         <HashRouter>
@@ -38,9 +45,11 @@ ReactDOM.render(<Provider store={store}>
                         <Route path='/fnjihome' component={Fnjihome}/>
                         <Route path='/gallery' component={Gallery}/>
                         <Route path='/grocery' component={Grocery}/>
+                        <Route path='/dropping' component={Dropping}/>
                         <Route path='/more' component={More}/>
                         <Route path='/my' component={My}/>
                     </Switch>
+                    <script>alert(1)</script>
                 </div>
             </LocaleProvider>
         </HashRouter>
